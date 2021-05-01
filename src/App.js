@@ -1,11 +1,18 @@
+import { useContext } from "react";
 import "./App.css";
+import { CartContext } from "./contexts";
 
 export function ProductListing() {
   return [1, 2, 3, 4, 5].map((item) => <h3>Product {item}</h3>);
 }
 
 export function Cart() {
-  return <h2>Items in cart: </h2>;
+  const value = useContext(CartContext);
+  // receives the object { cartItems: 4 }
+  const { cartItems } = value;
+  // destructuring to remove the value out of object
+
+  return <h2>Items in cart: {cartItems} </h2>;
 }
 
 export default function App() {
