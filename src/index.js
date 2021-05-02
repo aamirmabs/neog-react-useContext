@@ -7,7 +7,14 @@ import { CartContext } from "./contexts";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartContext.Provider value={{ cartItems: 4 }}>
+    <CartContext.Provider
+      value={{
+        cartItems: 4,
+        cartLogger: () => {
+          console.log("Carting");
+        },
+      }}
+    >
       <App />
     </CartContext.Provider>
   </React.StrictMode>,
