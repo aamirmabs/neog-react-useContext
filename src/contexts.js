@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 const CartContext = React.createContext(null);
 export { CartContext };
@@ -12,7 +12,10 @@ const value = {
   },
 };
 
-const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
-};
-export { CartProvider };
+}
+
+export function useCart() {
+  return useContext(CartContext);
+}
