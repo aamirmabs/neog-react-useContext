@@ -3,16 +3,20 @@ import "./App.css";
 import { useCart } from "./contexts";
 
 export function ProductListing() {
-  return [1, 2, 3, 4, 5].map((item) => <h3 key={item}>Product {item}</h3>);
+  const { setItemsInCart } = useCart();
+
+  return [1, 2, 3, 4, 5].map((item) => (
+    <div className="product" key={item}>
+      <h3>Product {item}</h3>
+      <button onClick={() => setItemsInCart((items) => items + 1)}>Add</button>
+    </div>
+  ));
 }
 
 export function Cart() {
-  const value = useCart();
-  // receives the object { cartItems: 4 }
-  const { cartItems } = value;
-  // destructuring to remove the value out of object
+  const { itemsInCart } = useCart();
 
-  return <h2>Items in cart: {cartItems} </h2>;
+  return <h2>Items in cart: {itemsInCart} </h2>;
 }
 
 export default function App() {
