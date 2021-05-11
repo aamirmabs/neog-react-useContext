@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { useCart } from "./contexts";
 
@@ -23,7 +23,7 @@ export function ProductListing() {
           <button
             onClick={() => setItemsInCart((oldItems) => [...oldItems, product])}
           >
-            Add to cart
+            Add to Cart
           </button>
         </div>
       ))}
@@ -55,12 +55,37 @@ export function Cart() {
   );
 }
 
+export function Checkout() {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return (
+    <div>
+      <h2>Checkout</h2>
+      <label>
+        Checkout
+        <input type="text" ref={inputRef} />
+      </label>
+    </div>
+  );
+}
+
 export default function App() {
   const [route, setRoute] = useState("products");
 
   return (
     <div className="App">
       <h1>eCommerce</h1>
+      <button
+        onClick={() => {
+          setRoute("products");
+        }}
+      >
+        Products
+      </button>
       <button
         onClick={() => {
           setRoute("cart");
@@ -70,14 +95,15 @@ export default function App() {
       </button>
       <button
         onClick={() => {
-          setRoute("products");
+          setRoute("checkout");
         }}
       >
-        Products
+        Checkout
       </button>
       <CartHeader />
       {route === "products" && <ProductListing />}
       {route === "cart" && <Cart />}
+      {route === "checkout" && <Checkout />}
     </div>
   );
 }
