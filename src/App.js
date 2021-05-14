@@ -56,19 +56,26 @@ export function Cart() {
 }
 
 export function Checkout() {
-  const inputRef = useRef(null);
+  const creditCardRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    creditCardRef.current.focus();
   }, []);
 
   return (
     <div>
       <h2>Checkout</h2>
       <label>
-        Checkout
-        <input type="text" ref={inputRef} />
+        Credit Card
+        <input type="text" ref={creditCardRef} />
       </label>
+      <button
+        onClick={() => {
+          console.log(creditCardRef.current.value);
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 }
@@ -107,10 +114,3 @@ export default function App() {
     </div>
   );
 }
-
-// create products object
-// wire products display of products
-// click add to cart to add object to cart state
-// console log the items to ensure that they are added
-// create route state and toggle with buttons
-// toggle cart and products on click
