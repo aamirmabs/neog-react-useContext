@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
-import { useCart } from "./contexts";
+import { useCart, useTheme } from "./contexts";
 
 const products = [
   { id: 1, title: "Red Shirt", price: 50 },
@@ -80,11 +80,23 @@ export function Checkout() {
   );
 }
 
+export function ThemeController() {
+  return (
+    <div className="toggle-theme">
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+  );
+}
+
 export default function App() {
   const [route, setRoute] = useState("products");
 
   return (
     <div className="App">
+      <ThemeController />
       <h1>eCommerce</h1>
       <button
         onClick={() => {

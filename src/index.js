@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-import { CartProvider } from "./contexts";
+import { CartProvider, ThemeProvider } from "./contexts";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

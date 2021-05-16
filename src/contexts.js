@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-const CartContext = React.createContext(null);
+const CartContext = createContext(null);
 export { CartContext };
 
 // Instead of using <CartContext.Provider> with a value prop, we can define it here and export a component that will accept { children } and render them.
@@ -23,4 +23,21 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   return useContext(CartContext);
+}
+
+const ThemeContext = createContext(null);
+export { ThemeContext };
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("light");
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  return useContext(ThemeContext);
 }
