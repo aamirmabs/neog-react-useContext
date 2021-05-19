@@ -5,7 +5,9 @@
   color: rgb(60, 67, 77);
 }
 
-.dark-App {
+.App-dark {
+  padding: 0.5rem;
+  text-align: inherit;
   background-color: rgb(54, 54, 54);
   color: rgb(240, 246, 255);
 }

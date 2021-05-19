@@ -81,11 +81,21 @@ export function Checkout() {
 }
 
 export function ThemeController() {
+  const { setDarkTheme } = useTheme();
+
   return (
     <div className="toggle-theme">
-      <label class="switch">
-        <input type="checkbox" />
-        <span class="slider round"></span>
+      <label className="switch">
+        <input
+          type="checkbox"
+          onClick={() => {
+            console.log("Clicked");
+            setDarkTheme((current) => {
+              return !current;
+            });
+          }}
+        />
+        <span className="slider round"></span>
       </label>
     </div>
   );
@@ -93,9 +103,17 @@ export function ThemeController() {
 
 export default function App() {
   const [route, setRoute] = useState("products");
+  const { darkTheme } = useTheme();
+
+  let appClass = "App";
+  if (darkTheme) {
+    appClass = "App-dark";
+  } else {
+    appClass = "App";
+  }
 
   return (
-    <div className="App">
+    <div className={appClass}>
       <ThemeController />
       <h1>eCommerce</h1>
       <button

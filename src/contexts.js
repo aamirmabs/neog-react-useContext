@@ -29,10 +29,12 @@ const ThemeContext = createContext(null);
 export { ThemeContext };
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("light");
+  const [darkTheme, setDarkTheme] = useState(false);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ darkTheme: darkTheme, setDarkTheme: setDarkTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   );
